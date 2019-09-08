@@ -1,32 +1,31 @@
 {
-    "title": "New Age",
-    "name": "startbootstrap-new-age",
+    "title": "avrioweb",
+    "name": "avrio-network",
     "version": "5.0.6",
     "scripts": {
         "start": "node_modules/.bin/gulp watch"
     },
-    "description": "A one page app landing page HTML theme for Bootstrap.",
+    "description": "Avrios website.",
     "keywords": [
         "css",
         "sass",
         "html",
-        "responsive",
-        "theme",
-        "template"
+        "responsive"
     ],
-    "homepage": "https://startbootstrap.com/template-overviews/new-age",
+    "homepage": "https://avrio.network",
     "bugs": {
-        "url": "https://github.com/BlackrockDigital/startbootstrap-new-age/issues",
-        "email": "feedback@startbootstrap.com"
+        "url": "https://github.com/avrio-project/avrio.network/issues",
+        "email": "web@avrio.network"
     },
     "license": "MIT",
-    "author": "Start Bootstrap",
+    "author": "avrio project",
     "contributors": [
-        "David Miller (http://davidmiller.io/)"
+        "David Miller (http://davidmiller.io/)",
+        "Ariel Hurdle"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/BlackrockDigital/startbootstrap-new-age.git"
+        "url": "https://github.com/avrio-project/avrio.network.git"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "5.9.0",
