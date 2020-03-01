@@ -8,6 +8,7 @@ when ading a new exchange:
  */
 function getAvex() {
     let result = fetch("https://avex.exchange/publicdata/price/?primary=aio&secondary=btc");
+    console.log(result);
     let res = JSON.parse(result);
     let btcrawprice = fetch("https://blockchain.info/ticker");
     let btcjsonprice = JSON.parse(btcrawprice)
