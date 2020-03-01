@@ -1,49 +1,30 @@
-/* This file gets the market stats of avrio (eg price, volume, ect)
-when ading a new exchange:
-* Create function get-<exchangename>() (eg get-avex())
-* The function should return an array in the following format:
-    [exchangename, pricebtc, volume24hr, low, high, chart-url(iframe), priceofbtc]
-* add your exchange to getMarketStats:
-    eg add get-avex() to under existing markets
- */
-function getAvex() {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://avex.exchange/publicdata/price/?primary=aio&secondary=btc");
-    xhr.send()
-    let result = "";
-    xhr.onload = () => {
-        if (xhr.status == 200) {
-            result = xhr.response;
-            console.log(result);
-        } else {
-            console.log("Crap");
+window.onload = function() {
+    const http_avex = new XMLHttpRequest();
+    const url_avex = 'https://avex.exchange/publicdata/price/?primary=aio&secondary=btc';
+    http_avex.open("GET", url_avex);
+    http_avex.send();
+
+    const http_btc = new XMLHttpRequest();
+    const url_btc = 'https://blockchain.info/ticker';
+    http_btc.open("GET", url_btc);
+
+    http_avex.onreadystatechange = (e) => {
+        if (http_avex.readyState == 4 && http_avex.status == 200) {
+            res = JSON.parse(http_avex.responseText);
+            if (res.status == "success") {
+                btcprice = res.price;
+                document.getElementById("vol").innerText = res.volume_primary;
+                document.getElementById("pricebtc").innerText = btcprice;
+                document.getElementById("graph").src = "https://avex.exchange/chart/?primary=aio&secondary=btc";
+                http_btc.send();
+            }
         }
     }
-    console.log(result);
-    let res = JSON.parse(result);
-    let xhrt = new XMLHttpRequest();
-    xhrt.open("GET", "https://blockchain.info/ticker");
-    xhrt.send();
-    let btcrawprice = "";
-    xhrt.onload = () => {
-        if (xhrt.status == 200) {
-            btcrawprice = xhrt.response;
-            console.log(result);
-        } else {
-            console.log("Crap");
+
+    http_btc.onreadystatechange = (e) => {
+        if (http_btc.readyState == 4 && http_btc.status == 200) {
+            res = JSON.parse(http_btc.responseText);
+            document.getElementById("pricegbp").innerText = res.GBP.buy * btcprice;
         }
     }
-    console.log(btcrawprice);
-    let btcjsonprice = JSON.parse(btcrawprice)
-    let btcprice = btcjsonprice.USD.buy;
-    let array = ["avex", res.price, res.volume_primary, res.low, res.high, '<iframe id="avex-chart" src=\'https://avex.exchange/chart/?primary=aio&secondary=btc" style="height:380px;width:100%\'></iframe>', btcprice];
-    return array;
-}
-window.onload(getMarketStats());
-function getMarketStats() {
-  let ms = getAvex();
-  document.getElementById("pricebtc").inerHtml= ms[1];
-  document.getElementById("pricegbp").inerHtml= ms[1] * ms[6];
-  document.getElementById("vol").inerHtml= ms[2];
-  document.getElementById("graph").inerHtml= ms[5];
 }
