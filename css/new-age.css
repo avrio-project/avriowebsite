@@ -290,7 +290,7 @@ section.features .feature-item i {
   display: block;
   margin-bottom: 15px;
   background: -webkit-gradient(linear, right top, left top, from(#FA8072), to(#FFA07A));
-  background: linear-gradient(90deg, rgba(30,169,160,1) 0%, rgba(12,89,115,1) 47%, rgba(129,223,106,1) 100%)
+  background: linear-gradient(to left, #FA8072, #FFA07A);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -410,7 +410,7 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
 .bg-primary {
   background: #fdcc52;
   background: -webkit-gradient(linear, left top, left bottom, from(#fdcc52), to(#fdc539));
-  background: linear-gradient(90deg, rgba(30,169,160,1) 0%, rgba(12,89,115,1) 47%, rgba(129,223,106,1) 100%);
+  background: linear-gradient(#fdcc52, #fdc539);
 }
 
 .text-primary {
