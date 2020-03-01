@@ -10,15 +10,15 @@ function getAvex() {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", "https://avex.exchange/publicdata/price/?primary=aio&secondary=btc");
     xhr.send()
+    let result = ""
     xhr.onload = () => {
         if (xhr.status == 200) {
-            let result = xhr.response;
+            result = xhr.response;
             console.log(result);
         } else {
             console.log("Crap");
         }
     }
-    console.log(result.then());
     let res = JSON.parse(result);
     let xhrt = new XMLHttpRequest();
     xhrt.open("GET", "https://blockchain.info/ticker");
