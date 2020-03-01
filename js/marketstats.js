@@ -1,0 +1,23 @@
+/* This file gets the market stats of avrio (eg price, volume, ect)
+when ading a new exchange:
+* Create function get-<exchangename>() (eg get-avex())
+* The function should return an array in the following format:
+    [exchangename, pricebtc, volume24hr, low, high, chart-url(iframe), priceofbtc]
+* add your exchange to getMarketStats:
+    eg add get-avex() to under existing markets
+ 
+function getAvex() {
+  let response = await fetch("https://avex.exchange/publicdata/price/?primary=aio&secondary=btc");
+  let res = response.json();
+  let btcrawprice = await fetch("https://blockchain.info/ticker");
+  let btcprice = btcraw.json().USD.buy;
+  let array = ["avex", res.price, res.volume_primary, res.low, res.high, '<iframe id="avex-chart" src='https://avex.exchange/chart/?primary=aio&secondary=btc" style="height:380px;width:100%"></iframe>', btcprice];
+  return array;
+}
+function getMarketStats() {
+  let ms = getAvex();
+  document.getElementById("pricebtc").inerHtml= ms[1];
+  document.getElementById("pricegbp").inerHtml= ms[1] * ms[6];
+  document.getElementById("vol").inerHtml= ms[2];
+  document.getElementById("graph").inerHtml= ms[5];
+}
