@@ -24,7 +24,7 @@ window.onload = function() {
     http_btc.onreadystatechange = (e) => {
         if (http_btc.readyState == 4 && http_btc.status == 200) {
             res = JSON.parse(http_btc.responseText);
-            document.getElementById("pricegbp").innerText = res.GBP.buy * btcprice;
+            document.getElementById("priceusd").innerText = res.USD.buy * btcprice;
         }
     }
 }
