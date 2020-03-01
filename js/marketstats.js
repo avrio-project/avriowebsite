@@ -5,7 +5,7 @@ when ading a new exchange:
     [exchangename, pricebtc, volume24hr, low, high, chart-url(iframe), priceofbtc]
 * add your exchange to getMarketStats:
     eg add get-avex() to under existing markets
- 
+ */
 function getAvex() {
   let response = await fetch("https://avex.exchange/publicdata/price/?primary=aio&secondary=btc");
   let res = response.json();
@@ -14,6 +14,7 @@ function getAvex() {
   let array = ["avex", res.price, res.volume_primary, res.low, res.high, '<iframe id="avex-chart" src='https://avex.exchange/chart/?primary=aio&secondary=btc" style="height:380px;width:100%"></iframe>', btcprice];
   return array;
 }
+window.onload(getMarketStats());
 function getMarketStats() {
   let ms = getAvex();
   document.getElementById("pricebtc").inerHtml= ms[1];
