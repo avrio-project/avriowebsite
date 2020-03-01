@@ -10,7 +10,7 @@ function getAvex() {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", "https://avex.exchange/publicdata/price/?primary=aio&secondary=btc");
     xhr.send()
-    let result = ""
+    let result = "";
     xhr.onload = () => {
         if (xhr.status == 200) {
             result = xhr.response;
@@ -19,18 +19,21 @@ function getAvex() {
             console.log("Crap");
         }
     }
+    console.log(result);
     let res = JSON.parse(result);
     let xhrt = new XMLHttpRequest();
     xhrt.open("GET", "https://blockchain.info/ticker");
     xhrt.send();
+    let btcrawprice = "";
     xhrt.onload = () => {
         if (xhrt.status == 200) {
-            let btcrawprice = xhrt.response;
+            btcrawprice = xhrt.response;
             console.log(result);
         } else {
             console.log("Crap");
         }
     }
+    console.log(btcrawprice);
     let btcjsonprice = JSON.parse(btcrawprice)
     let btcprice = btcjsonprice.USD.buy;
     let array = ["avex", res.price, res.volume_primary, res.low, res.high, '<iframe id="avex-chart" src=\'https://avex.exchange/chart/?primary=aio&secondary=btc" style="height:380px;width:100%\'></iframe>', btcprice];
