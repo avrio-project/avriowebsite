@@ -7,7 +7,17 @@ when ading a new exchange:
     eg add get-avex() to under existing markets
  */
 function getAvex() {
-    let result = fetch("https://avex.exchange/publicdata/price/?primary=aio&secondary=btc");
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://avex.exchange/publicdata/price/?primary=aio&secondary=btc");
+    xhr.send()
+    xhr.onload = () => {
+        if (request.status == 200) {
+            let result = xmr.response;
+            console.log(result);
+        } else {
+            console.log("Crap");
+        }
+    }
     console.log(result.then());
     let res = JSON.parse(result);
     let btcrawprice = fetch("https://blockchain.info/ticker");
