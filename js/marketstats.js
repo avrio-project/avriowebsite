@@ -7,10 +7,9 @@ when ading a new exchange:
     eg add get-avex() to under existing markets
  */
 function getAvex() {
-  let response = fetch("https://avex.exchange/publicdata/price/?primary=aio&secondary=btc");
-  let res = response.json();
+  let res = fetch("https://avex.exchange/publicdata/price/?primary=aio&secondary=btc");
   let btcrawprice = fetch("https://blockchain.info/ticker");
-  let btcprice = btcraw.json().USD.buy;
+  let btcprice = btcraw.USD.buy;
   let array = ["avex", res.price, res.volume_primary, res.low, res.high, '<iframe id="avex-chart" src=\'https://avex.exchange/chart/?primary=aio&secondary=btc" style="height:380px;width:100%\'></iframe>', btcprice];
   return array;
 }
