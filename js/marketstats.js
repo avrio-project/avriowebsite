@@ -11,7 +11,7 @@ function getAvex() {
   let res = response.json();
   let btcrawprice = fetch("https://blockchain.info/ticker");
   let btcprice = btcraw.json().USD.buy;
-  let array = ["avex", res.price, res.volume_primary, res.low, res.high, '<iframe id="avex-chart" src='https://avex.exchange/chart/?primary=aio&secondary=btc" style="height:380px;width:100%"></iframe>', btcprice];
+  let array = ["avex", res.price, res.volume_primary, res.low, res.high, '<iframe id="avex-chart" src=\'https://avex.exchange/chart/?primary=aio&secondary=btc" style="height:380px;width:100%\'></iframe>', btcprice];
   return array;
 }
 window.onload(getMarketStats());
